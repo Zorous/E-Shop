@@ -12,8 +12,8 @@ return new class extends Migration
         Schema::create('familles', function (Blueprint $table) {
             $table->id();
             $table->string("famille", 100);
-            $table->tinyInteger("active");
-            $table->string("photo_famille",255);
+            $table->tinyInteger("active")->default(1);
+            $table->string("photo_famille",100);
             $table->timestamps();
         });
     }

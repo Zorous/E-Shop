@@ -29,10 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/familles', [FamilleController::class, 'index'])->name('familles');
-    Route::get('/familles/edit', [FamilleController::class, 'edit'])->name('familles.edit');
-    Route::patch('/familles', [FamilleController::class, 'update'])->name('familles.update');
-    Route::delete('/familles', [FamilleController::class, 'destroy'])->name('familles.destroy');
+    Route::resource('familles',FamilleController::class);
 });
 
 

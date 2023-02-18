@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('sous_familles', function (Blueprint $table) {
             $table->id();
             $table->string("sous_famille", 255);
-            $table->tinyInteger("active");
+            $table->tinyInteger("active")->default(1);
             $table->string("photo",100);
-            $table->foreignId('famille_id')->references('id')->on('familles');
+            $table->foreignId('famille_id')->references('id')->on('familles')->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
