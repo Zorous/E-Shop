@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FamilleController;
+use App\Http\Controllers\SousFamilleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('familles',FamilleController::class);
+    Route::resource('sous-familles',SousFamilleController::class);
 });
 
 

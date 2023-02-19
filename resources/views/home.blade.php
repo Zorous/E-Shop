@@ -186,8 +186,7 @@
           <div class="carousel-item active">
               <div>
                @foreach($familles as $f)
-                    <div class="container">
-                      <div style="background:url('{{$f->photo_famille}}');backgroundPosition:center;width:100%;height:100px;filter:blur(2px)"">
+                      <div style="background:url({{url("/uploads/familles_imgs/$f->photo_famille")}});backgroundPosition:center;width:100%;height:100px;filter:blur(2px)"">
                         <h1 class="fashion_taital text-white">
                           {{$f->famille}}
                         </h1>
@@ -212,7 +211,7 @@
                                     <div class="tshirt_img">
                                       <img
                                         alt={{$sf->photo}}
-                                        src={{$sf->photo}}
+                                        src={{url("/uploads/sous_familles_imgs/$sf->photo")}}
                                       />
                                     </div>
                                     <div class="btn_main">
@@ -248,7 +247,6 @@
                       </a>
                     </div>
             @endforeach
-              </div>
           </div>
         </div>
       </div>

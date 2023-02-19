@@ -104,6 +104,12 @@ class FamilleController extends Controller
 
     public function destroy(Famille $famille)
     {
+        // dd($famille->photo_famille);
+        if(file_exists(public_path("uploads/familles_imgs/$famille->photo_famille"))){
+            unlink(public_path("uploads/familles_imgs/$famille->photo_famille"));
+            }else{
+            dd('File does not exists.');
+            }
         $famille->delete();
         return redirect()->route('familles.index');
 

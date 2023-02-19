@@ -26,7 +26,7 @@
 
     <x-sidebar.link
         title="Sous Familles"
-        href="{{ route('dashboard') }}"
+        href="{{ route('sous-familles.index') }}"
         :isActive="request()->routeIs('dashboard')"
     >
         <x-slot name="icon">
