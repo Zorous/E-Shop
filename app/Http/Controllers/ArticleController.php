@@ -10,19 +10,17 @@ class ArticleController extends Controller
 
     public function index()
     {
-        // $articles = Article::all();
-        // return response()->json($articles);
+
         $articles = Article::all();
-        return view("sellers.articles.index", ["articles" => $articles]);
-        // return("<h1>index</h1>");
+        return view("sellers.articles.index",compact("articles"));
 
     }
 
 
     public function create()
     {
-        $familles = Famille::all();
-        return view("sellers.articles.create",compact("familles"));
+        $articles = Article::all();
+        return view("sellers.articles.create",compact("articles"));
     }
 
 
@@ -51,7 +49,7 @@ class ArticleController extends Controller
             "famille_id" => $request->famille_id
         ]);
 
-        return redirect()->route('sous-familles.index')->with("success", "la sous famille a été ajoutée avec succès");
+        return redirect()->route('articles.index')->with("success", "la sous famille a été ajoutée avec succès");
 
     }
 
@@ -102,7 +100,7 @@ class ArticleController extends Controller
             }
 
             $article->update($request->all());
-            return redirect()->route('sous-familles.index')->with("success", "la sous famille a été modifiée avec succès");
+            return redirect()->route('articles.index')->with("success", "la sous famille a été modifiée avec succès");
 
     }
 
@@ -122,7 +120,7 @@ dd('File does not exists.');
             dd('File does not exists.');
             }
         $article->delete();
-        return redirect()->route('sous-familles.index');
+        return redirect()->route('articles.index');
 
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\SousFamilleController;
 
-use App\Models\Article;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('familles',FamilleController::class);
     Route::resource('sous-familles',SousFamilleController::class);
-    Route::resource('articles',Article::class);
+    Route::resource('articles',ArticleController::class);
 });
 
 

@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->string("photo",255);
-            $table->string("designation", 100);
-            $table->float("prixht");
-            $table->float("tva");
-            $table->float("stock");
-            $table->float("stock_initial");
-            $table->tinyInteger("active");
-            $table->foreignId('sous_famille_id')->references('id')->on('sous_familles');
+            $table->string('designation');
+            $table->float('prix');
+            $table->float('tva');
+            $table->string('photo')->nullable();
+            $table->boolean('active')->default(1);
+            $table->boolean('isrepture')->default(0);
+            $table->foreignId('sous_famille_id')->constrained();
+            $table->foreignId('unite_id')->constrained();
             $table->timestamps();
         });
     }

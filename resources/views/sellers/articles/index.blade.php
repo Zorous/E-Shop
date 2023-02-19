@@ -19,7 +19,7 @@
         </div>
       </div>
     @endif
-    <a class="text-sm bg-orange-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ route('articles.create') }}"><i class="fa-solid fa-square-plus"></i> Ajouter une famille</a>
+    <a class="text-sm bg-orange-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" href="{{ route('articles.create') }}"><i class="fa-solid fa-square-plus"></i> Ajouter une article</a>
 </div>
     <div class="overflow-auto p-9 rounded-lg shadow-md hidden md:block bg-white dark:bg-dark-eval-2 dark:text-white border-spacing-2">
         {{-- Desktop and Tablets view --}}
@@ -34,23 +34,23 @@
             </thead>
             <tbody>
                 @if($articles->count() > 0)
-                @foreach ($articles as $famille)
+                @foreach ($articles as $article)
                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                         <td class="relative w-89 h-32 flex-shrink-0">
                             <div class="absolute left-0 top-0 w-full h-full flex items-center justify-center">
-                            <img class="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" src="{{ url("/uploads/familles_imgs/$famille->photo_famille") }}" width="120px" height="80px" />
+                            <img class="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" src="{{ url("/uploads/familles_imgs/$article->photo_famille") }}" width="120px" height="80px" />
                         </div>
                     </td>
-                        <td class="px-6 py-4 text-center text-xl bg-gray-50 dark:bg-gray-800">{{ $famille->famille }}</td>
+                        <td class="px-6 py-4 text-center text-xl bg-gray-50 dark:bg-gray-800">{{ $article->designation }}</td>
                         <td class="px-6 py-4 text-sm text-gray-700 dark:text-white border-spacing-2">
-                            @if ($famille->active === 1)
+                            @if ($article->active === 1)
                                 <span
                                     class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg">
                                     Active
                                 </span>
                             @endif
 
-                            @if ($famille->active === 0)
+                            @if ($article->active === 0)
                                 <span
                                     class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 rounded-lg">
                                     Not Active
@@ -59,10 +59,10 @@
                         </td>
                         <td class="px-6 py-4 text-center bg-gray-50 dark:bg-gray-800">
                            <div class="flex">
-                            <a href={{route('articles.edit',$famille->id)}} class="text-lg mr-5">
+                            <a href={{route('articles.edit',$article->id)}} class="text-lg mr-5">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
-                            <form action="{{ route('articles.destroy',$famille->id) }}" method="post">
+                            <form action="{{ route('articles.destroy',$article->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                              <button class="text-orange-600 text-lg"><i class="fa-solid fa-trash"></i></button>
@@ -87,14 +87,14 @@
 
     {{-- Phones view --}}
     <div class="grid grid-cols-1 gap-4 md:hidden mb-10">
-        @foreach ($articles as $famille)
+        @foreach ($articles as $article)
         <div class="flex bg-white border relative border-gray-300 dark:bg-dark-eval-2 dark:border-dark-eval-3 rounded-xl overflow-hidden items-center justify-start" style="cursor: auto;">
 
             <div class="relative w-32 h-32 flex-shrink-0">
 
               <div class="absolute left-0 top-0 w-full h-full flex items-center justify-center">
 
-                <img class="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" loading="lazy" src="{{ url("/uploads/familles_imgs/$famille->photo_famille") }}" />
+                <img class="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" loading="lazy" src="{{ url("/uploads/familles_imgs/$article->photo_famille") }}" />
 
               </div>
 
@@ -102,17 +102,17 @@
 
             <div class="p-4 flex">
 
-              <h1 class="line-clamp-1 text-3xl"><b>{{ $famille->famille }}</b></h1>
+              <h1 class="line-clamp-1 text-3xl"><b>{{ $article->article }}</b></h1>
 
               <span class="text-sm text-gray-500 mx-6 mt-2">
-                @if ($famille->active === 1)
+                @if ($article->active === 1)
                 <span
                     class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg">
                     Active
                 </span>
             @endif
 
-            @if ($famille->active === 0)
+            @if ($article->active === 0)
                 <span
                     class="p-1.5 text-xs font-medium uppercase tracking-wider text-red-800 bg-red-200 rounded-lg">
                     Not Active
@@ -121,10 +121,10 @@
               </span>
 
               <span class="flex items-center absolute right-5 text-gray-500">
-                <a href={{route('articles.edit',$famille->id)}} class="text-lg mr-5">
+                <a href={{route('articles.edit',$article->id)}} class="text-lg mr-5">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                <form action="{{ route('articles.destroy',$famille->id) }}" method="post">
+                <form action="{{ route('articles.destroy',$article->id) }}" method="post">
                     @csrf
                     @method('DELETE')
                  <button class="text-orange-600 text-lg"><i class="fa-solid fa-trash"></i></button>
