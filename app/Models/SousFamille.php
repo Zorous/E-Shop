@@ -15,9 +15,9 @@ class SousFamille extends Model
         'famille_id'
     ];
 
-    // public function famille(){
-    //     return $this->belongsTo(Famille::class,"famille_id","id");
-    // }
+    public function famille(){
+        return $this->belongsTo(Famille::class,"famille_id","id");
+    }
 
 
     public $timestamps = false;

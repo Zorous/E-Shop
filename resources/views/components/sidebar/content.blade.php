@@ -36,7 +36,7 @@
 
     <x-sidebar.link
         title="Articles"
-        href="{{ route('dashboard') }}"
+        href="{{ route('articles.index') }}"
         :isActive="request()->routeIs('dashboard')"
     >
         <x-slot name="icon">

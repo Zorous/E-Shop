@@ -68,8 +68,9 @@ class SousFamilleController extends Controller
 
     public function edit(SousFamille $sousFamille)
     {
-
-        return view("sellers.sousfamilles.update",["sous_famille"=>$sousFamille]);
+        // dd($sousFamille->famille->famille);
+        $familles = Famille::all();
+        return view("sellers.sousfamilles.update",compact("sousFamille","familles"));
         // return ('edit');
     }
 
@@ -79,10 +80,18 @@ class SousFamilleController extends Controller
         $request->validate(
             [
                 "sous_famille" => "required",
+                "photo" => "image|mimes:jpg,png,jpeg,gif,svg|max:2048"
+
             ]);
 
 
             if ($request->has('photo')) {
+                if(file_exists(public_path("uploads/sous_familles_imgs/$sousFamille->photo"))){
+                    unlink(public_path("uploads/sous_familles_imgs/$sousFamille->photo"));
+                    }else{
+                    dd('File does not exists.');
+                    }
+
                 $file = $request->file('photo');
                 $extension = $file->getClientOriginalExtension();
                 $filename = time() . "." . $extension;
@@ -94,39 +103,33 @@ class SousFamilleController extends Controller
             }
 
             $my_checkbox_value = $request['piece_rechange'];
-
             if ($my_checkbox_value == 1) {
                 //checked
                 $request->active = 1;
-
             } else {
                 //unchecked
                 $request->active = 0;
-
             }
 
-            $sousFamille->update($request->all());
+            $sousFamille->update(
+             [   "sous_famille" => $request->sous_famille,
+                "photo" => $request->photo,
+                "famille_id" => $request->famille_id
+            ]
+            );
             return redirect()->route('sous-familles.index')->with("success", "la sous famille a été modifiée avec succès");
 
     }
 
-public function removeImage($imgFolder,$imgName)
-{
-if(file_exists(public_path('upload/bio.png'))){
-unlink(public_path('upload/bio.png'));
-}else{
-dd('File does not exists.');
-}
-}
     public function destroy(SousFamille $sousFamille)
     {
-        if(file_exists(public_path("uploads/familles_imgs/$sousFamille->photo"))){
-            unlink(public_path("uploads/familles_imgs/$sousFamille->photo"));
+        if(file_exists(public_path("uploads/sous_familles_imgs/$sousFamille->photo"))){
+            unlink(public_path("uploads/sous_familles_imgs/$sousFamille->photo"));
             }else{
             dd('File does not exists.');
             }
         $sousFamille->delete();
-        return redirect()->route('sous-familles.index');
+        return redirect()->route('sous-familles.index')->with("success", "la sous famille a été supprimé avec succès");;
 
     }
 }

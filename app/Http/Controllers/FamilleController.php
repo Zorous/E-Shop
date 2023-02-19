@@ -42,10 +42,12 @@ class FamilleController extends Controller
             $request->photo = $filename;
         }
 
-        Famille::create([
+        Famille::create(
+            [
             "famille" => $request->famille,
             "photo_famille" => $request->photo
-        ]);
+        ]
+    );
 
         return redirect()->route('familles.index')->with("success", "la famille a été ajoutée avec succès");
 
@@ -61,7 +63,7 @@ class FamilleController extends Controller
     public function edit(Famille $famille)
     {
 
-        return view("sellers.familles.update",["famille"=>$famille]);
+        return view("sellers.familles.update", ["famille" => $famille]);
         // return ('edit');
     }
 
@@ -71,45 +73,55 @@ class FamilleController extends Controller
         $request->validate(
             [
                 "famille" => "required",
-            ]);
+                "photo" => "image|mimes:jpg,png,jpeg,gif,svg|max:2048"
 
+            ]
+        );
 
-            if ($request->has('photo')) {
-                $file = $request->file('photo');
-                $extension = $file->getClientOriginalExtension();
-                $filename = time() . "." . $extension;
-                $file->move('uploads/familles_imgs', $filename);
-                $request->photo = $filename;
-            }
-            else{
-                $request->photo = $famille->photo_famille;
-            }
+        if ($request->has('photo')) {
+            if(file_exists(public_path("uploads/familles_imgs/$famille->photo_famille"))){
+                unlink(public_path("uploads/familles_imgs/$famille->photo_famille"));
+                }else{
+                dd('File does not exists.');
+                }
 
-            $my_checkbox_value = $request['piece_rechange'];
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . "." . $extension;
+            $file->move('uploads/familles_imgs', $filename);
+            $request->photo = $filename;
+        }
+        else{
+            $request->photo = $famille->photo;
+        }
 
-            if ($my_checkbox_value == 1) {
-                //checked
-                $request->active = 1;
+        $my_checkbox_value = $request['piece_rechange'];
+        if ($my_checkbox_value == 1) {
+            //checked
+            $request->active = 1;
+        } else {
+            //unchecked
+            $request->active = 0;
+        }
 
-            } else {
-                //unchecked
-                $request->active = 0;
+        $famille->update(
+            [
+                "famille" => $request->famille,
+                "photo_famille" => $request->photo
+            ]
+        );
 
-            }
-
-            $famille->update($request->all());
-            return redirect()->route('familles.index')->with("success", "la famille a été modifiée avec succès");
+        return redirect()->route('familles.index')->with("success", "la famille a été modifiée avec succès");
 
     }
 
     public function destroy(Famille $famille)
     {
-        // dd($famille->photo_famille);
-        if(file_exists(public_path("uploads/familles_imgs/$famille->photo_famille"))){
+        if (file_exists(public_path("uploads/familles_imgs/$famille->photo_famille"))) {
             unlink(public_path("uploads/familles_imgs/$famille->photo_famille"));
-            }else{
+        } else {
             dd('File does not exists.');
-            }
+        }
         $famille->delete();
         return redirect()->route('familles.index');
 

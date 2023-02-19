@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\SousFamilleController;
+
+use App\Models\Article;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
@@ -32,6 +35,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('familles',FamilleController::class);
     Route::resource('sous-familles',SousFamilleController::class);
+    Route::resource('articles',Article::class);
 });
 
 

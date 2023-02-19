@@ -10,73 +10,119 @@ class ArticleController extends Controller
 
     public function index()
     {
+        // $articles = Article::all();
+        // return response()->json($articles);
         $articles = Article::all();
-        return response()->json($articles);
+        return view("sellers.articles.index", ["articles" => $articles]);
+        // return("<h1>index</h1>");
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        $familles = Famille::all();
+        return view("sellers.articles.create",compact("familles"));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
+
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                "sous_famille" => "required",
+                "photo" => "required|image|mimes:jpg,png,jpeg,gif,svg|max:2048"
+                // "photo" => "required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000"
+            ]
+        );
+        if ($request->has('photo')) {
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . "." . $extension;
+            $file->move('uploads/sous_familles_imgs', $filename);
+            $request->photo = $filename;
+        }
+
+        Article::create([
+            "sous_famille" => $request->sous_famille,
+            "photo" => $request->photo,
+            "famille_id" => $request->famille_id
+        ]);
+
+        return redirect()->route('sous-familles.index')->with("success", "la sous famille a été ajoutée avec succès");
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Article $article)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Article $article)
     {
-        //
+
+        return view("sellers.articles.update");
+        // return ('edit');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Article $article)
     {
-        //
+        $request->validate(
+            [
+                "sous_famille" => "required",
+            ]);
+
+
+            if ($request->has('photo')) {
+                $file = $request->file('photo');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() . "." . $extension;
+                $file->move('uploads/sous_familles_imgs', $filename);
+                $request->photo = $filename;
+            }
+            else{
+                $request->photo = $article->photo;
+            }
+
+            $my_checkbox_value = $request['piece_rechange'];
+
+            if ($my_checkbox_value == 1) {
+                //checked
+                $request->active = 1;
+
+            } else {
+                //unchecked
+                $request->active = 0;
+
+            }
+
+            $article->update($request->all());
+            return redirect()->route('sous-familles.index')->with("success", "la sous famille a été modifiée avec succès");
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
-     */
+public function removeImage($imgFolder,$imgName)
+{
+if(file_exists(public_path('upload/bio.png'))){
+unlink(public_path('upload/bio.png'));
+}else{
+dd('File does not exists.');
+}
+}
     public function destroy(Article $article)
     {
-        //
+        if(file_exists(public_path("uploads/familles_imgs/$article->photo"))){
+            unlink(public_path("uploads/familles_imgs/$article->photo"));
+            }else{
+            dd('File does not exists.');
+            }
+        $article->delete();
+        return redirect()->route('sous-familles.index');
+
     }
 }

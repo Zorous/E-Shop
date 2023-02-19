@@ -50,6 +50,7 @@
                         Famille
                     </label>
                     <select name="famille_id" class="block appearance-none w-full bg-white dark:bg-slate-700 border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="none" selected disabled hidden>Selecter une famille</option>
                         @foreach($familles as $famille)
                         <option value={{$famille->id}}>{{$famille->famille}}</option>
                         @endforeach
