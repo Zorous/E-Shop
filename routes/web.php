@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\SousFamilleController;
 
@@ -21,6 +22,9 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/',[HomeController::class,"index"]);
+Route::get('/sous_famille/{sf}',[ClientController::class,"index"]);
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -37,6 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('sous-familles',SousFamilleController::class);
     Route::resource('articles',ArticleController::class);
 });
+
+
 
 
 

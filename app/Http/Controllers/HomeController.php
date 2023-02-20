@@ -15,10 +15,6 @@ class HomeController extends Controller
         $sous_familles = SousFamille::all();
         $familles = Famille::all();
 
-        // $sous_familles->each(function ($item){
-        //     dd($item);
-        // });
-        // dd($sous_familles);
-        return view ('home',["sous_familles"=>$sous_familles,"familles"=>$familles]);
+        return view ('client.home',compact("sous_familles","familles"));
     }
 }
