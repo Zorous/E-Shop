@@ -47,9 +47,14 @@
                             {{ $message }}
                         </p>
                     @enderror
-                    <label for="piece_rechange" class="uppercase tracking-wide text-gray-500 text-xs font-bold">active :</label>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-3 mb-6 mt-6">
+                <div class="w-full px-3">
+                    <label for="active" class="uppercase tracking-wide text-gray-500 text-xs font-bold">active :</label>
                     <input type="hidden" name="active" value="0">
-                    <input type="checkbox" name="active" id="piece_rechange" value="1" @if($sousFamille->active === 1) checked @endif>
+                    <input type="checkbox" name="active" id="active" value="1" @if($sousFamille->active === 1) checked @endif>
                 </div>
             </div>
 

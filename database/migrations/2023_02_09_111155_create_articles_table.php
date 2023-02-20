@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('designation');
             $table->float('prix');
-            $table->float('tva');
+            $table->float('tva')->default(0.2);
             $table->float('stock_initial');
             $table->float('stock');
             $table->string('photo')->nullable();

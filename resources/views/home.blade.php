@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <!-- site metas -->
-        <title>Eflyer</title>
+        <title>E-Shop</title>
         <meta name="keywords" content="">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -184,14 +184,15 @@
       <div id="main_slider" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-              <div>
+              <div class="container">
                @foreach($familles as $f)
-                      <div style="background:url({{url("/uploads/familles_imgs/$f->photo_famille")}});backgroundPosition:center;width:100%;height:100px;filter:blur(2px)"">
-                        <h1 class="fashion_taital text-white">
+                      <div style="background:url({{url("/uploads/familles_imgs/$f->photo_famille")}});backgroundPosition:center;width:100%;height:180px;filter:blur(2px);font-size:42px;">
+                        <h1 class="fashion_taital text-white mt-5">
                           {{$f->famille}}
                         </h1>
                       </div>
 
+                     <div>
                       <div class="fashion_section_2">
                         <div class="row">
                             @foreach($sous_familles as $sf)
@@ -231,6 +232,7 @@
 
                         </div>
                       </div>
+                    </div>
                       <a
                         class="carousel-control-prev"
                         href="#electronic_main_slider"
@@ -245,7 +247,6 @@
                         data-slide="next">
                         <i class="fa fa-angle-right"></i>
                       </a>
-                    </div>
             @endforeach
           </div>
         </div>

@@ -13,13 +13,13 @@
             @csrf
             <div class="flex flex-wrap -mx-3 mb-6 mt-6">
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    <label class="uppercase tracking-wide text-gray-500 text-xs font-bold"
                         for="grid-first-name">
                        Nom de Sous-famille :
                     </label>
                     <input
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border @error("sous_famille") border-red-500 @enderror dark:bg-slate-700 dark:text-white rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                        id="grid-first-name" name="sous_famille" type="text" value={{old("famille")}}>
+                        id="grid-first-name" name="sous_famille" type="text" value={{old("sous_famille")}}>
                         @error("sous_famille")
                         <p class="text-red-500 text-xs italic">
                             {{$message}}
@@ -31,7 +31,7 @@
 
             <div class="flex flex-wrap -mx-3 mb-6 mt-6">
                 <div class="w-full px-3">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    <label class="uppercase tracking-wide text-gray-500 text-xs font-bold"
                         for="image">
                         Image
                     </label>
@@ -45,7 +45,7 @@
                         @enderror
                 </div>
                 <div class="w-full px-3">
-                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                    <label class="uppercase tracking-wide text-gray-500 text-xs font-bold"
                         for="image">
                         Famille
                     </label>

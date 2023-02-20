@@ -15,7 +15,7 @@ class ArticleController extends Controller
 
         $articles = Article::all();
         // dd($articles);
-        return view("sellers.articles.index",compact("articles"));
+        return view("sellers.articles.index", compact("articles"));
 
     }
 
@@ -25,7 +25,7 @@ class ArticleController extends Controller
         $articles = Article::all();
         $sous_familles = SousFamille::all();
         $unites = Unite::all();
-        return view("sellers.articles.create",compact("articles","sous_familles","unites"));
+        return view("sellers.articles.create", compact("articles", "sous_familles", "unites"));
     }
 
 
@@ -35,26 +35,34 @@ class ArticleController extends Controller
     {
         $request->validate(
             [
-                "sous_famille" => "required",
+                "designation" => "required",
+                "sous_famille_id" => "required",
+                "stock_initial" => "required",
+                "prix" => "required",
+                "unite_id" => "required",
                 "photo" => "required|image|mimes:jpg,png,jpeg,gif,svg|max:2048"
-                // "photo" => "required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000"
             ]
         );
         if ($request->has('photo')) {
             $file = $request->file('photo');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . "." . $extension;
-            $file->move('uploads/sous_familles_imgs', $filename);
+            $file->move('uploads/articles_imgs', $filename);
             $request->photo = $filename;
         }
-
-        Article::create([
-            "sous_famille" => $request->sous_famille,
+// dd($request->prix);
+        Article::create(
+            [
+            "designation" => $request->designation,
+            "prix" => $request->prix,
+            "stock_initial" => $request->stock_initial,
             "photo" => $request->photo,
-            "famille_id" => $request->famille_id
-        ]);
+            "sous_famille_id" => $request->sous_famille_id,
+            "unite_id" => $request->unite_id
+        ]
+    );
 
-        return redirect()->route('articles.index')->with("success", "la sous famille a été ajoutée avec succès");
+        return redirect()->route('articles.index')->with("success", "l'article a été ajoutée avec succès");
 
     }
 
@@ -68,7 +76,10 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
 
-        return view("sellers.articles.update");
+        $sous_familles = SousFamille::all();
+        $unites = Unite::all();
+
+        return view("sellers.articles.update",compact("article","sous_familles", "unites"));
         // return ('edit');
     }
 
@@ -77,53 +88,76 @@ class ArticleController extends Controller
     {
         $request->validate(
             [
-                "sous_famille" => "required",
-            ]);
+                "designation" => "required",
+                "sous_famille_id" => "required",
+                "stock_initial" => "required",
+                "prix" => "required",
+                "unite_id" => "required",
+                "photo" => "image|mimes:jpg,png,jpeg,gif,svg|max:2048"
+            ]
+        );
 
 
-            if ($request->has('photo')) {
-                $file = $request->file('photo');
-                $extension = $file->getClientOriginalExtension();
-                $filename = time() . "." . $extension;
-                $file->move('uploads/sous_familles_imgs', $filename);
-                $request->photo = $filename;
-            }
-            else{
-                $request->photo = $article->photo;
-            }
+        if ($request->has('photo')) {
+            if(file_exists(public_path("uploads/articles_imgs/$article->photo"))){
+                unlink(public_path("uploads/articles_imgs/$article->photo"));
+                }else{
+                dd('File does not exists.');
+                }
 
-            $my_checkbox_value = $request['piece_rechange'];
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . "." . $extension;
+            $file->move('uploads/articles_imgs', $filename);
+            $request->photo = $filename;
+        }
+        else{
+            $request->photo = $article->photo;
+        }
 
-            if ($my_checkbox_value == 1) {
-                //checked
-                $request->active = 1;
 
-            } else {
-                //unchecked
-                $request->active = 0;
+        $my_checkbox_value = $request['active'];
 
-            }
+        if ($my_checkbox_value == 1) {
+            //checked
+            $request->active = 1;
 
-            $article->update($request->all());
-            return redirect()->route('articles.index')->with("success", "la sous famille a été modifiée avec succès");
+        } else {
+            //unchecked
+            $request->active = 0;
+
+        }
+
+        $article->update(
+            [
+                "designation" => $request->designation,
+                "prix" => $request->prix,
+                "active" => $request->active,
+                "stock_initial" => $request->stock_initial,
+                "photo" => $request->photo,
+                "sous_famille_id" => $request->sous_famille_id,
+                "unite_id" => $request->unite_id
+            ]
+        );
+        return redirect()->route('articles.index')->with("success", "la sous famille a été modifiée avec succès");
 
     }
 
-public function removeImage($imgFolder,$imgName)
-{
-if(file_exists(public_path('upload/bio.png'))){
-unlink(public_path('upload/bio.png'));
-}else{
-dd('File does not exists.');
-}
-}
+    public function removeImage($imgFolder, $imgName)
+    {
+        if (file_exists(public_path('upload/bio.png'))) {
+            unlink(public_path('upload/bio.png'));
+        } else {
+            dd('File does not exists.');
+        }
+    }
     public function destroy(Article $article)
     {
-        if(file_exists(public_path("uploads/familles_imgs/$article->photo"))){
-            unlink(public_path("uploads/familles_imgs/$article->photo"));
-            }else{
+        if (file_exists(public_path("uploads/articles_imgs/$article->photo"))) {
+            unlink(public_path("uploads/articles_imgs/$article->photo"));
+        } else {
             dd('File does not exists.');
-            }
+        }
         $article->delete();
         return redirect()->route('articles.index');
 

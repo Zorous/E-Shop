@@ -15,12 +15,13 @@ class Article extends Model
     protected $fillable = [
         'photo',
         'designation',
-        'prixht',
+        'prix',
         'tva',
         'stock',
         'stock_initial',
         'active',
-        'sous_famille_id'
+        'sous_famille_id',
+        'unite_id',
     ];
 
     public $timestamps = false;
