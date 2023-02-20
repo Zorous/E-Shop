@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Unite;
+
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Article extends Model
 {
@@ -20,4 +24,15 @@ class Article extends Model
     ];
 
     public $timestamps = false;
+
+    public function unite()
+    {
+        return $this->hasOne(Unite::class,"unite_id","id");
+    }
+
+
+    public function sous_famille():BelongsTo{
+        return $this->belongsTo(SousFamille::class,"famille_id","id");
+    }
+
 }

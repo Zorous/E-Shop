@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('designation');
             $table->float('prix');
             $table->float('tva');
+            $table->float('stock_initial');
+            $table->float('stock');
             $table->string('photo')->nullable();
             $table->boolean('active')->default(1);
             $table->boolean('isrepture')->default(0);

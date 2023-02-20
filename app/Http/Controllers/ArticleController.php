@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\SousFamille;
+use App\Models\Unite;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -12,6 +14,7 @@ class ArticleController extends Controller
     {
 
         $articles = Article::all();
+        // dd($articles);
         return view("sellers.articles.index",compact("articles"));
 
     }
@@ -20,7 +23,9 @@ class ArticleController extends Controller
     public function create()
     {
         $articles = Article::all();
-        return view("sellers.articles.create",compact("articles"));
+        $sous_familles = SousFamille::all();
+        $unites = Unite::all();
+        return view("sellers.articles.create",compact("articles","sous_familles","unites"));
     }
 
 

@@ -9,11 +9,11 @@
     </x-slot>
 
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-        <form class="w-full max-w-lg" action="{{ route('familles.update', $famille->id) }}" method="POST"
+        <form class="w-full max-w-lg mx-auto" action="{{ route('familles.update', $famille->id) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="flex flex-wrap -mx-3 mb-6 mt-6">
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-500 text-xs font-bold mb-2"
                         for="grid-first-name">
@@ -31,7 +31,7 @@
 
             </div>
 
-            <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="flex flex-wrap -mx-3 mb-6 mt-6">
                 <div class="w-full px-3">
                     <label class="block uppercase tracking-wide text-gray-500 text-xs font-bold mb-2" for="image">
                         Image
@@ -47,9 +47,9 @@
                             {{ $message }}
                         </p>
                     @enderror
-                    <label for="piece_rechange" class="uppercase tracking-wide text-gray-500 text-xs font-bold">active :</label>
+                    <label for="active" class="uppercase tracking-wide text-gray-500 text-xs font-bold">active :</label>
                     <input type="hidden" name="active" value="0">
-                    <input type="checkbox" name="active" id="piece_rechange" value="1" @if($famille->active === 1) checked @endif>
+                    <input type="checkbox" name="active" id="active" value="1" @if($famille->active === 1) checked @endif>
                 </div>
             </div>
 

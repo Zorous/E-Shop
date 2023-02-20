@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <h2 class="text-xl font-semibold leading-tight">
-                Familles
+                Articles
             </h2>
         </div>
     </x-slot>
@@ -27,7 +27,8 @@
             <thead>
                 <tr>
                     <th class="p-3 text-sm font-semibold tracking-wide text-left" scope="col">Photo</th>
-                    <th class="p-3 text-sm font-semibold tracking-wide text-left" scope="col">Titre</th>
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left" scope="col">Designation</th>
+                    <th class="p-3 text-sm font-semibold tracking-wide text-left" scope="col">Prix</th>
                     <th class="p-3 text-sm font-semibold tracking-wide text-left" scope="col">Active</th>
                     <th class="p-3 text-sm font-semibold tracking-wide text-left" scope="col">Actions</th>
                 </tr>
@@ -38,7 +39,7 @@
                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                         <td class="relative w-89 h-32 flex-shrink-0">
                             <div class="absolute left-0 top-0 w-full h-full flex items-center justify-center">
-                            <img class="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" src="{{ url("/uploads/familles_imgs/$article->photo_famille") }}" width="120px" height="80px" />
+                            <img class="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" src="{{ url("/uploads/articles_imgs/$article->photo") }}" width="120px" height="80px" />
                         </div>
                     </td>
                         <td class="px-6 py-4 text-center text-xl bg-gray-50 dark:bg-gray-800">{{ $article->designation }}</td>
@@ -57,6 +58,7 @@
                                 </span>
                             @endif
                         </td>
+                        <td class="px-6 py-4 text-center bg-gray-50 dark:bg-gray-800">{{$article->prix}}</td>
                         <td class="px-6 py-4 text-center bg-gray-50 dark:bg-gray-800">
                            <div class="flex">
                             <a href={{route('articles.edit',$article->id)}} class="text-lg mr-5">
@@ -75,7 +77,7 @@
                 @endforeach
                 @else
                 <tr>
-                    <td colspan="5" class="text-center bg-gray-50 dark:bg-gray-800">Aucunne Famille est trouvée</td>
+                    <td colspan="5" class="text-center bg-gray-50 dark:bg-gray-800">Aucun Article est trouvée</td>
                 </tr>
                 @endif
             </tbody>
@@ -94,7 +96,7 @@
 
               <div class="absolute left-0 top-0 w-full h-full flex items-center justify-center">
 
-                <img class="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" loading="lazy" src="{{ url("/uploads/familles_imgs/$article->photo_famille") }}" />
+                <img class="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50" loading="lazy" src="{{ url("/uploads/articles_imgs/$article->photo_famille") }}" />
 
               </div>
 

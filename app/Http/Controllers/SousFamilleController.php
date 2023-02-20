@@ -102,18 +102,22 @@ class SousFamilleController extends Controller
                 $request->photo = $sousFamille->photo;
             }
 
-            $my_checkbox_value = $request['piece_rechange'];
+            $my_checkbox_value = $request->active;
             if ($my_checkbox_value == 1) {
                 //checked
+                // dd("checked $my_checkbox_value");
                 $request->active = 1;
             } else {
                 //unchecked
+                // dd("Not checked $my_checkbox_value");
+
                 $request->active = 0;
             }
 
             $sousFamille->update(
              [   "sous_famille" => $request->sous_famille,
                 "photo" => $request->photo,
+                "active" => $request->active,
                 "famille_id" => $request->famille_id
             ]
             );

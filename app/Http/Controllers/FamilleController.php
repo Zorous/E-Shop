@@ -44,10 +44,10 @@ class FamilleController extends Controller
 
         Famille::create(
             [
-            "famille" => $request->famille,
-            "photo_famille" => $request->photo
-        ]
-    );
+                "famille" => $request->famille,
+                "photo_famille" => $request->photo
+            ]
+        );
 
         return redirect()->route('familles.index')->with("success", "la famille a été ajoutée avec succès");
 
@@ -79,11 +79,11 @@ class FamilleController extends Controller
         );
 
         if ($request->has('photo')) {
-            if(file_exists(public_path("uploads/familles_imgs/$famille->photo_famille"))){
+            if (file_exists(public_path("uploads/familles_imgs/$famille->photo_famille"))) {
                 unlink(public_path("uploads/familles_imgs/$famille->photo_famille"));
-                }else{
+            } else {
                 dd('File does not exists.');
-                }
+            }
 
             $file = $request->file('photo');
             $extension = $file->getClientOriginalExtension();
@@ -92,10 +92,10 @@ class FamilleController extends Controller
             $request->photo = $filename;
         }
         else{
-            $request->photo = $famille->photo;
+            $request->photo = $famille->photo_famille;
         }
 
-        $my_checkbox_value = $request['piece_rechange'];
+        $my_checkbox_value = $request['active'];
         if ($my_checkbox_value == 1) {
             //checked
             $request->active = 1;
@@ -107,6 +107,7 @@ class FamilleController extends Controller
         $famille->update(
             [
                 "famille" => $request->famille,
+                "active" => $request->active,
                 "photo_famille" => $request->photo
             ]
         );

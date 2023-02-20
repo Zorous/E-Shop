@@ -9,9 +9,9 @@
     </x-slot>
 
     <div class="p-6 overflow-hidden bg-white rounded-md shadow-md dark:bg-dark-eval-1">
-        <form class="w-full max-w-lg" action="{{ route('familles.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="w-full max-w-lg mx-auto" action="{{ route('familles.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="flex flex-wrap -mx-3 mb-6 mt-6">
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                         for="grid-first-name">
@@ -29,7 +29,7 @@
 
             </div>
 
-            <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="flex flex-wrap -mx-3 mb-6 mt-6">
                 <div class="w-full px-3">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                         for="image">
