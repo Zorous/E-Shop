@@ -13,7 +13,7 @@ class HomeController extends Controller
 
 
         $sous_familles = SousFamille::all();
-        $familles = Famille::all();
+        $familles = Famille::limit(3)->get();
 
         return view ('client.home',compact("sous_familles","familles"));
     }
