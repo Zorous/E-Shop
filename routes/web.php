@@ -24,6 +24,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/',[HomeController::class,"index"]);
 Route::get('/sous_famille/{id}',[ClientController::class,"sous_familles_articles"]);
 Route::get('/Famille/{id}',[ClientController::class,"familles_sousfamille"]);
+Route::get('/familles_view',[ClientController::class,"familles_view"]);
 
 
 

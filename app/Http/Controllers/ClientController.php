@@ -11,19 +11,30 @@ class ClientController extends Controller
 {
     public function sous_familles_articles($id){
         $articles = Article::all()->where('sous_famille_id', '=', $id);
+        // dd($articles->chunk());
+
 
         return view("client.shops.articles",compact('articles'));
 
+
     }
     public function familles_sousfamille($id){
-        $sous_familles = SousFamille::all()->where('famille_id', '=', $id)->first();
+        $sous_familles = SousFamille::all()->where('famille_id', '=', $id);
+        // dd($sous_familles->sous_famille);
 
-        $famille = Famille::all()->where("id","=",$id);
-        dd($famille->famille);
+        $famille = Famille::all()->where("id","=",$id)->first();
+        // dd($famille->photo_famille);
+        // $banner = $famille[0]->photo_famille;
 
 
 
         return view("client.shops.sous_familles",compact('sous_familles','famille'));
 
+    }
+
+
+    public function familles_view(){
+        $familles = Famille::all();
+        return view('client.shops.familles',compact("familles"));
     }
 }

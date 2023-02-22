@@ -291,7 +291,7 @@
                 @endforeach
             </div>
             <div class="mx-auto text-center mt-5">
-                <a href="" style="color:#F7941D;">see more</a>
+                <a href="/familles_view" style="color:#F7941D;">see more</a>
             </div>
         </div>
     </section>

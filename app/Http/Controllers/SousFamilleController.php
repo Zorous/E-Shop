@@ -80,7 +80,8 @@ class SousFamilleController extends Controller
         $request->validate(
             [
                 "sous_famille" => "required",
-                "photo" => "image|mimes:jpg,png,jpeg,gif,svg|max:2048"
+                "photo" => "image|mimes:jpg,png,jpeg,gif,svg|max:2048",
+                "famille_id" => "required"
 
             ]);
 

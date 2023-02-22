@@ -24,6 +24,7 @@
 <!-- Slicknav -->
 <link rel="stylesheet" href={{url("/ui_assets/css/slicknav.min.css")}}>
 
+<script src="https://cdn.tailwindcss.com"></script>
 
 
 <!-- Eshop StyleSheet -->

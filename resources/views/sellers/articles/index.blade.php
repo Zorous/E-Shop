@@ -60,7 +60,7 @@
                                 @if ($article->active === 1)
                                     <span
                                         class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg">
-                                        Active
+                                        <i class="fa-solid fa-star"></i> Active
                                     </span>
                                 @endif
 

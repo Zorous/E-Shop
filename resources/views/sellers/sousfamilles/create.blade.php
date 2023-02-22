@@ -55,6 +55,11 @@
                         <option value={{$famille->id}}>{{$famille->famille}}</option>
                         @endforeach
                       </select>
+                      @error("famille_id")
+                      <p class="text-red-500 text-xs italic">
+                          {{$message}}
+                      </p>
+                      @enderror
                 </div>
             </div>
 
