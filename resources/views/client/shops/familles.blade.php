@@ -1,4 +1,4 @@
-@extends('client.layout')
+@extends('client.shops.layout')
 
 
 @section('shop')

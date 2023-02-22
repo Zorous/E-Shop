@@ -52,11 +52,11 @@
                                         height="80px" />
                                 </div>
                             </td>
-                            <td class="px-6 py-4 text-center text-xl bg-gray-50 dark:bg-gray-800text-center">
+                            <td class="px-6 py-4 text-center text-xl bg-gray-50 dark:bg-gray-800">
                                 {{ $article->designation }}</td>
                             <td class="bg-white border-b dark:bg-gray-900 dark:border-gray-700 text-center">
                                 {{ $article->stock_initial }}</td>
-                            <td class="px-6 py-4 text-center text-xl bg-gray-50 dark:bg-gray-800text-center">
+                            <td class="px-6 py-4 text-center text-xl bg-gray-50 dark:bg-gray-800">
                                 @if ($article->active === 1)
                                     <span
                                         class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg">

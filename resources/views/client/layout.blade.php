@@ -17,6 +17,8 @@
 <link rel="stylesheet" href={{url("/ui_assets/css/themify-icons.css")}}>
 <!-- Nice Select CSS -->
 <link rel="stylesheet" href={{url("/ui_assets/css/niceselect.css")}}>
+<!-- Animate CSS -->
+<link rel="stylesheet" href={{url("/ui_assets/css/animate.css")}}>
 <!-- Flex Slider CSS -->
 <link rel="stylesheet" href={{url("/ui_assets/css/flex-slider.min.css")}}>
 <!-- Owl Carousel -->
@@ -176,5 +178,22 @@
 <script src={{url("/ui_assets/js/magnific-popup.js")}}></script>
 <!-- Fancybox JS -->
 <script src={{url("/ui_assets/js/facnybox.min.js")}}></script>
+
+<!-- Waypoints JS -->
+<script src={{url("/ui_assets/js/waypoints.min.js")}}></script>
+<!-- Countdown JS -->
+<script src={{url("/ui_assets/js/finalcountdown.min.js")}}></script>
+<!-- Nice Select JS -->
+<script src={{url("/ui_assets/js/nicesellect.js")}}></script>
+<!-- Flex Slider JS -->
+<script src={{url("/ui_assets/js/flex-slider.js")}}></script>
+<!-- ScrollUp JS -->
+<script src={{url("/ui_assets/js/scrollup.js")}}></script>
+<!-- Onepage Nav JS -->
+<script src={{url("/ui_assets/js/onepage-nav.min.js")}}></script>
+<!-- Easing JS -->
+<script src={{url("/ui_assets/js/easing.js")}}></script>
+<!-- Active JS -->
+<script src={{url("/ui_assets/js/active.js")}}></script>
 </body>
 </html>

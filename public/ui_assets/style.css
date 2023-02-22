@@ -164,6 +164,18 @@ Version:1.0
   animation: preloader-fx 1.6s linear infinite;
 }
 
+.overlay{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transition: .5s ease;
+        background-color: rgba(0, 0, 0, 0.5);
+        overflow:hidden;
+
+}
+
 #sous_famille:hover *{
     cursor: pointer;
 }

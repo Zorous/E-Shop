@@ -1,39 +1,10 @@
-@extends('client.layout')
+@extends('client.shops.layout')
 
 @section('shop')
 
     <!-- Header -->
     <header class="header shop">
-        <!-- Topbar -->
-        <div class="topbar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-12 col-12">
-                        <!-- Top Left -->
-                        <div class="top-left">
-                            <ul class="list-main">
-                                <li><i class="ti-headphone-alt"></i> +060 (800) 801-582</li>
-                                <li><i class="ti-email"></i> support@shophub.com</li>
-                            </ul>
-                        </div>
-                        <!--/ End Top Left -->
-                    </div>
-                    <div class="col-lg-8 col-md-12 col-12">
-                        <!-- Top Right -->
-                        <div class="right-content">
-                            <ul class="list-main">
-                                <li><i class="ti-location-pin"></i> Store location</li>
-                                <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li>
-                                <li><i class="ti-user"></i> <a href="#">My account</a></li>
-                                <li><i class="ti-power-off"></i><a href="/login">Login</a></li>
-                            </ul>
-                        </div>
-                        <!-- End Top Right -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Topbar -->
+
         <div class="middle-inner">
             <div class="container">
                 <div class="row">
@@ -208,7 +179,7 @@
                                     <div class="navbar-collapse">
                                         <div class="nav-inner">
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="#">Home</a></li>
+                                                <li class="active"><a href="/">Home</a></li>
                                                 <li><a href="#">Product</a></li>
                                                 <li><a href="#">Service</a></li>
                                                 <li><a href="#">Shop<i class="ti-angle-down"></i><span
@@ -281,7 +252,7 @@
                         <div class="bread-inner">
                             <ul class="bread-list">
                                 <li><a href="/">Home<i class="ti-arrow-right"></i></a></li>
-                                <li class="active"><a href="#">{{ $articles->designation }}</a></li>
+                                {{-- <li class="active"><a href="#">{{ $articles->designation }}</a></li> --}}
                             </ul>
                         </div>
                     </div>
@@ -446,14 +417,15 @@
                             </div>
                         </div>
                         <div class="row">
+                           @if($articles->count() > 0)
                             @foreach ($articles as $ar)
                                 <div class="col-lg-4 col-md-6 col-12">
                                     <div class="single-product">
                                         <div class="product-img">
                                             <a href="product-details.html">
                                                 <img class="default-img"
-                                                    src="{{url("/uploads/sous_articles_imgs/$ar->photo") }}" alt="#">
-                                                <img class="hover-img" src={{ url("/uploads/sous_articles_imgs/$ar->photo") }}
+                                                    src="{{url("/uploads/articles_imgs/$ar->photo")}}" alt="#">
+                                                <img class="hover-img" src={{ url("/uploads/articles_imgs/$ar->photo") }}
                                                     alt="#">
                                             </a>
                                             <div class="button-head">
@@ -479,42 +451,13 @@
                                     </div>
                                 </div>
                             @endforeach
+                            @else
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <h3 class="mt-5 ml-5">Nothing Found</h3>
+                            </div>
+                            @endif
 
                         </div>
-                    </div>
-                    <div class="quantity">
-                        <!-- Input Order -->
-                        <div class="input-group">
-                            <div class="button minus">
-                                <button type="button" class="btn btn-primary btn-number" disabled="disabled"
-                                    data-type="minus" data-field="quant[1]">
-                                    <i class="ti-minus"></i>
-                                </button>
-                            </div>
-                            <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="1000"
-                                value="1">
-                            <div class="button plus">
-                                <button type="button" class="btn btn-primary btn-number" data-type="plus"
-                                    data-field="quant[1]">
-                                    <i class="ti-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <!--/ End Input Order -->
-                    </div>
-                    <div class="add-to-cart">
-                        <a href="#" class="btn">Add to cart</a>
-                        <a href="#" class="btn min"><i class="ti-heart"></i></a>
-                        <a href="#" class="btn min"><i class="fa fa-compress"></i></a>
-                    </div>
-                    <div class="default-social">
-                        <h4 class="share-now">Share:</h4>
-                        <ul>
-                            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a class="youtube" href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                            <li><a class="dribbble" href="#"><i class="fa fa-google-plus"></i></a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
