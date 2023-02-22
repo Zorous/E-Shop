@@ -9,25 +9,21 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-    public function sous_familles_articles($id)
+    public function sous_familles_articles($fid,$sid)
     {
-        $articles = Article::where('sous_famille_id', '=', $id)->get();
-        // return $articles;
-        // foreach ($articles as $ar) {
-        //     return $ar->designation;
-        // }
-        return view("client.shops.articles",compact('articles'));
+        $articles = Article::where('sous_famille_id', '=', $sid)->get();
+        $sf = SousFamille::whereId($sid)->get()->first();
+        $f = Famille::whereId($fid)->get()->first();
+        // return ($f);
+        return view("client.shops.articles",compact('articles','sf','f'));
 
 
     }
     public function familles_sousfamille($id)
     {
         $sous_familles = SousFamille::all()->where('famille_id', '=', $id);
-        // dd($sous_familles->sous_famille);
-
         $famille = Famille::all()->where("id", "=", $id)->first();
-        // dd($famille->photo_famille);
-        // $banner = $famille[0]->photo_famille;
+
 
 
 

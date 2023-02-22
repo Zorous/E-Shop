@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\FamilleController;
 use App\Http\Controllers\SousFamilleController;
@@ -22,11 +23,12 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/',[HomeController::class,"index"]);
-Route::get('/sous_famille/{id}',[ClientController::class,"sous_familles_articles"]);
+Route::get('/famille/{fid}/sous_famille/{sid}',[ClientController::class,"sous_familles_articles"]);
 Route::get('/Famille/{id}',[ClientController::class,"familles_sousfamille"]);
 Route::get('/familles_view',[ClientController::class,"familles_view"]);
 
 
+Route::get('add-to-cart/{id}',[CartController::class,"addToCart"])->name('add_to_cart');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
