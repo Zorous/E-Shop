@@ -5,9 +5,11 @@
     <!-- Slider Area -->
     <section class="hero-slider">
         <!-- Single Slider -->
+        @php $banner_img = $famille->photo_famille @endphp
         <div class="single-slider relative" style="position:relative"
-            style='background-image:url("{{url("/uploads/familles_imgs/$famille->photo_famille") }}");'>
-            <div class="overlay"></div>
+            style="background-image:url('{{url("/uploads/familles_imgs/$famille->photo_famille")}}');">
+            <div class="overlay"><img style="width:100vw;" src={{url("/uploads/familles_imgs/$famille->photo_famille")}}></div>
+
             <div class="container">
                 <div class="row no-gutters">
 

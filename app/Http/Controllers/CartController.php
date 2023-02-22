@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+
+
+
+    public function cart(){
+        return view('client.cart');
+    }
+
     public function addToCart($id){
         $product = Article::findOrFail($id);
         // return $product;
@@ -18,9 +25,9 @@ class CartController extends Controller
         }
         else{
             $cart[$id] = [
-                "products_name" => $product->product_name,
+                "products_name" => $product->designation,
                 "photo" => $product->photo,
-                "price" => $product->price,
+                "price" => $product->prix,
                 "quantity" => 1
             ];
         }
@@ -29,4 +36,8 @@ session()->put('cart',$cart);
 return redirect()->back()->with('success','Product added to cart on successfully');
 
     }
+
+public function remove(Request $request){
+return 'remove';
+}
 }

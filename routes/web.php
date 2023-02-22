@@ -29,6 +29,8 @@ Route::get('/familles_view',[ClientController::class,"familles_view"]);
 
 
 Route::get('add-to-cart/{id}',[CartController::class,"addToCart"])->name('add_to_cart');
+Route::get('cart',[CartController::class,"cart"])->name('cart');
+Route::delete('remove_from_cart',[CartController::class,"remove"])->name('remove_from_cart');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -172,9 +172,10 @@ Version:1.0
         right: 0;
         transition: .5s ease;
         background-color: rgba(0, 0, 0, 0.5);
-        overflow:hidden;
+        /* overflow:hidden; */
 
 }
+
 
 #sous_famille:hover *{
     cursor: pointer;
