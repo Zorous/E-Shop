@@ -34,8 +34,8 @@
                   <p><strong>{{ $details['products_name'] }}</strong></p>
                   <p>Color: blue</p>
                   <p>Size: M</p>
-                  <button type="button" class="btn btn-primary cart_remove" data-mdb-toggle="tooltip"
-                    title="Remove item">
+                  <button type="button" id="cart_remove" class="btn btn-primary cart_remove" data-mdb-toggle="tooltip"
+                    title="Remove item" onclick="delete_from_cart()">
                     Delete
                   </button>
                   <!-- Data -->
@@ -135,29 +135,52 @@
     </div>
   </section>
 
-@endsection
 
 
-@section('my_scripts')
-<script type="text/javascript">
-$('.cart_remove').click(function(e){
-    e.preventDefault();
+  <script type="text/javascript">
+    // $('#cart_remove').click(alert('haha'));
+    $('.cart_remove').click(function(e){
+        alert('haha')
+        e.preventDefault();
 
-    var element = $(this);
+        var element = $(this);
 
-    if(confirm("Do you really want to remove this item?")){
-      $.ajax({
-        url: "{{route('remove_from_cart')}}",
-        method : "DELETE",
-        data : {
-            _token : '{{ csrf_token() }}',
-            id : element.parent("row").attr("data-id")
-        },
-        success: function (response){
-            window.location.reload();
+        if(confirm("Do you really want to remove this item?")){
+          $.ajax({
+            url: "{{route('remove_from_cart')}}",
+            method : "DELETE",
+            data : {
+                _token : '{{ csrf_token() }}',
+                id : element.parent("row").attr("data-id")
+            },
+            success: function (response){
+                window.location.reload();
+            }
+          })
         }
-      })
-    }
-})
-</script>
+    })
+
+    // function delete_from_cart(){
+    //     alert('haha');
+
+
+
+    //     if(confirm("Do you really want to remove this item?")){
+    //       $.ajax({
+    //         url: "{{route('remove_from_cart')}}",
+    //         method : "DELETE",
+    //         data : {
+    //             _token : '{{ csrf_token() }}',
+    //             id : element.parent("row").attr("data-id")
+    //         },
+    //         success: function (response){
+    //             window.location.reload();
+    //         }
+    //       })
+    //     }
+
+    // }
+    </script>
 @endsection
+
+

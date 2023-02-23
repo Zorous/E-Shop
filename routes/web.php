@@ -22,7 +22,9 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/',[HomeController::class,"index"]);
+
+// For Clients
+Route::get('/',[HomeController::class,"index"])->name("/");
 Route::get('/famille/{fid}/sous_famille/{sid}',[ClientController::class,"sous_familles_articles"]);
 Route::get('/Famille/{id}',[ClientController::class,"familles_sousfamille"]);
 Route::get('/familles_view',[ClientController::class,"familles_view"]);
@@ -32,13 +34,18 @@ Route::get('add-to-cart/{id}',[CartController::class,"addToCart"])->name('add_to
 Route::get('cart',[CartController::class,"cart"])->name('cart');
 Route::delete('remove_from_cart',[CartController::class,"remove"])->name('remove_from_cart');
 
+
+
+
+
+// For Admin(s)
+
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified','checkLogin'])->name('dashboard');
 
 
-
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','checkLogin'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

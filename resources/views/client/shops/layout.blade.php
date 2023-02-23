@@ -1,40 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<!-- Bootstrap -->
-<link rel="stylesheet" href={{url("/ui_assets/css/bootstrap.css")}}>
-<!-- Magnific Popup -->
-<link rel="stylesheet" href={{url("/ui_assets/css/magnific-popup.min.css")}}>
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-<link rel="stylesheet" href={{url("/ui_assets/css/font-awesome.css")}}>
-<!-- Fancybox -->
-<link rel="stylesheet" href={{url("/ui_assets/css/jquery.fancybox.min.css")}}>
-<!-- Themify Icons -->
-<link rel="stylesheet" href={{url("/ui_assets/css/themify-icons.css")}}>
-<!-- Nice Select CSS -->
-<link rel="stylesheet" href={{url("/ui_assets/css/niceselect.css")}}>
-<!-- Flex Slider CSS -->
-<link rel="stylesheet" href={{url("/ui_assets/css/flex-slider.min.css")}}>
-<!-- Owl Carousel -->
-<link rel="stylesheet" href={{url("/ui_assets/css/owl-carousel.css")}}>
-<!-- Slicknav -->
-<link rel="stylesheet" href={{url("/ui_assets/css/slicknav.min.css")}}>
-<!-- Jquery Ui -->
-<link rel="stylesheet" href={{url("css/jquery-ui.css")}}>
-<!-- Animate CSS -->
-<link rel="stylesheet" href={{url("css/animate.css")}}>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href={{ url('/ui_assets/css/bootstrap.css') }}>
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href={{ url('/ui_assets/css/magnific-popup.min.css') }}>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href={{ url('/ui_assets/css/font-awesome.css') }}>
+    <!-- Fancybox -->
+    <link rel="stylesheet" href={{ url('/ui_assets/css/jquery.fancybox.min.css') }}>
+    <!-- Themify Icons -->
+    <link rel="stylesheet" href={{ url('/ui_assets/css/themify-icons.css') }}>
+    <!-- Nice Select CSS -->
+    <link rel="stylesheet" href={{ url('/ui_assets/css/niceselect.css') }}>
+    <!-- Flex Slider CSS -->
+    <link rel="stylesheet" href={{ url('/ui_assets/css/flex-slider.min.css') }}>
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href={{ url('/ui_assets/css/owl-carousel.css') }}>
+    <!-- Slicknav -->
+    <link rel="stylesheet" href={{ url('/ui_assets/css/slicknav.min.css') }}>
+    <!-- Jquery Ui -->
+    <link rel="stylesheet" href={{ url('css/jquery-ui.css') }}>
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href={{ url('css/animate.css') }}>
 
-<!-- Eshop StyleSheet -->
-	<link rel="stylesheet" href={{url("/ui_assets/css/reset.css")}}>
-	<link rel="stylesheet" href={{url("/ui_assets/style.css")}}>
-    <link rel="stylesheet" href={{url("/ui_assets/css/responsive.css")}}>
+    <!-- Eshop StyleSheet -->
+    <link rel="stylesheet" href={{ url('/ui_assets/css/reset.css') }}>
+    <link rel="stylesheet" href={{ url('/ui_assets/style.css') }}>
+    <link rel="stylesheet" href={{ url('/ui_assets/css/responsive.css') }}>
 
-<title>@yield('title')</title>
+
+
+
+    {{-- Icons --}}
+    <script src="https://kit.fontawesome.com/3a988c450f.js" crossorigin="anonymous"></script>
+    <title>@yield('title')</title>
 </head>
+
 <body>
     <!-- Header -->
     <header class="header shop">
@@ -45,7 +54,8 @@
                     <div class="col-lg-2 col-md-2 col-12">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="/"><img src={{ url('/assets/images/logo.png') }} style="width:240px !important;height:60px !important;" alt="logo"></a>
+                            <a href="/"><img src={{ url('/assets/images/logo.png') }}
+                                    style="width:240px !important;height:60px !important;" alt="logo"></a>
                         </div>
                         <!--/ End Logo -->
                         <!-- Search Form -->
@@ -82,43 +92,60 @@
                     <div class="col-lg-2 col-md-3 col-12">
                         <div class="right-bar">
                             <!-- Search Form -->
-                            <div class="sinlge-bar">
-                                <a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+
+
+                            @if(Auth::check())
+                            <div class="sinlge-bar flex">
+                                <a href="/login" class="single-icon">
+                                    <!-- Authentication -->
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" style="background: transparent;border:0px;"><i
+                                                class="fa-solid fa-right-from-bracket"></i></button>
+                                    </form>
+                                </a>
                             </div>
+                            @else
                             <div class="sinlge-bar">
                                 <a href="/login" class="single-icon"><i class="fa fa-user-circle-o"
                                         aria-hidden="true"></i></a>
                             </div>
+                            @endif
+
                             <div class="sinlge-bar shopping">
                                 <a href="#" class="single-icon"><i class="ti-bag"></i> <span
-                                        class="total-count">{{count((array) session('cart'))}}</span></a>
+                                        class="total-count">{{ count((array) session('cart')) }}</span></a>
                                 <!-- Shopping Item -->
                                 <div class="shopping-item">
                                     <div class="dropdown-cart-header">
-                                        <span>{{count((array) session('cart'))}}</span>
-                                        <a href="{{route('cart')}}">View Cart</a>
+                                        <span>{{ count((array) session('cart')) }}</span>
+                                        <a href="{{ route('cart') }}">View Cart</a>
                                     </div>
                                     <ul class="shopping-list">
-                                        @foreach(session('cart') as $id => $details)
-                                        <li>
-                                            <a href="#" class="remove" title="Remove this item"><i
-                                                    class="fa fa-remove"></i></a>
-                                            <a class="cart-img" href="#"><img src="{{"/uploads/articles_imgs"}}/{{$details['photo']}}"
-                                                    alt="#"></a>
-                                            <h4><a href="#">{{ $details['products_name'] }}</a></h4>
-                                            <p class="quantity"><span class="amount">{{ $details['price'] }} DH</span></p>
-                                        </li>
-                                        @endforeach
+                                        @if (session('cart'))
+                                            @foreach (session('cart') as $id => $details)
+                                                <li>
+                                                    <a href="#" class="remove" title="Remove this item"><i
+                                                            class="fa fa-remove"></i></a>
+                                                    <a class="cart-img" href="#"><img
+                                                            src="{{ '/uploads/articles_imgs' }}/{{ $details['photo'] }}"
+                                                            alt="#"></a>
+                                                    <h4><a href="#">{{ $details['products_name'] }}</a></h4>
+                                                    <p class="quantity"><span class="amount">{{ $details['price'] }}
+                                                            DH</span></p>
+                                                </li>
+                                            @endforeach
+                                        @endif
 
                                     </ul>
                                     <div class="bottom">
                                         <div class="total">
                                             @php $total = 0;  @endphp
-                                            @foreach((array) session('cart') as $id => $details)
-                                            @php $total += $details['price'] * $details['quantity'] @endphp
+                                            @foreach ((array) session('cart') as $id => $details)
+                                                @php $total += $details['price'] * $details['quantity'] @endphp
                                             @endforeach
                                             <span>Total</span>
-                                            <span class="total-amount">{{$total}} DH</span>
+                                            <span class="total-amount">{{ $total }} DH</span>
                                         </div>
                                         <a href="checkout.html" class="btn animate">Checkout</a>
                                     </div>
@@ -226,7 +253,8 @@
                                                 <li><a href="#">Pages</a></li>
                                                 <li><a href="#">Blog<i class="ti-angle-down"></i></a>
                                                     <ul class="dropdown">
-                                                        <li><a href="blog-single-sidebar.html">Blog Single Sidebar</a></li>
+                                                        <li><a href="blog-single-sidebar.html">Blog Single Sidebar</a>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li><a href="contact.html">Contact Us</a></li>
@@ -245,152 +273,157 @@
     </header>
     <!--/ End Header -->
 
-@if(session('success'))
-<div class="alert alert-success">
-{{session('sucess')}}
-</div>
-@endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('sucess') }}
+        </div>
+    @endif
 
 
-@yield("shop")
-
-
-
+    @yield('shop')
 
 
 
-	<!-- Start Footer Area -->
-	<footer class="footer">
-		<!-- Footer Top -->
-		<div class="footer-top section">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-5 col-md-6 col-12">
-						<!-- Single Widget -->
-						<div class="single-footer about">
-							<div class="logo">
-								<a href="index.html"><img src="images/logo2.png" alt="#"></a>
-							</div>
-							<p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue,  magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
-							<p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span></p>
-						</div>
-						<!-- End Single Widget -->
-					</div>
-					<div class="col-lg-2 col-md-6 col-12">
-						<!-- Single Widget -->
-						<div class="single-footer links">
-							<h4>Information</h4>
-							<ul>
-								<li><a href="#">About Us</a></li>
-								<li><a href="#">Faq</a></li>
-								<li><a href="#">Terms & Conditions</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Help</a></li>
-							</ul>
-						</div>
-						<!-- End Single Widget -->
-					</div>
-					<div class="col-lg-2 col-md-6 col-12">
-						<!-- Single Widget -->
-						<div class="single-footer links">
-							<h4>Customer Service</h4>
-							<ul>
-								<li><a href="#">Payment Methods</a></li>
-								<li><a href="#">Money-back</a></li>
-								<li><a href="#">Returns</a></li>
-								<li><a href="#">Shipping</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-							</ul>
-						</div>
-						<!-- End Single Widget -->
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
-						<!-- Single Widget -->
-						<div class="single-footer social">
-							<h4>Get In Tuch</h4>
-							<!-- Single Widget -->
-							<div class="contact">
-								<ul>
-									<li>NO. 342 - London Oxford Street.</li>
-									<li>012 United Kingdom.</li>
-									<li>info@eshop.com</li>
-									<li>+032 3456 7890</li>
-								</ul>
-							</div>
-							<!-- End Single Widget -->
-							<ul>
-								<li><a href="#"><i class="ti-facebook"></i></a></li>
-								<li><a href="#"><i class="ti-twitter"></i></a></li>
-								<li><a href="#"><i class="ti-flickr"></i></a></li>
-								<li><a href="#"><i class="ti-instagram"></i></a></li>
-							</ul>
-						</div>
-						<!-- End Single Widget -->
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Footer Top -->
-		<div class="copyright">
-			<div class="container">
-				<div class="inner">
-					<div class="row">
-						<div class="col-lg-6 col-12">
-							<div class="left">
-								<p>Copyright © 2023  All Rights Reserved.</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-12">
-							<div class="right">
-								<img src="images/payments.png" alt="#">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- /End Footer Area -->
 
 
 
-@yield('my_scripts')
+    <!-- Start Footer Area -->
+    <footer class="footer">
+        <!-- Footer Top -->
+        <div class="footer-top section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-md-6 col-12">
+                        <!-- Single Widget -->
+                        <div class="single-footer about">
+                            <div class="logo">
+                                <a href="index.html"><img src="images/logo2.png" alt="#"></a>
+                            </div>
+                            <p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue,
+                                magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
+                                porttitor, facilisis luctus, metus.</p>
+                            <p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456
+                                        789</a></span></p>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-12">
+                        <!-- Single Widget -->
+                        <div class="single-footer links">
+                            <h4>Information</h4>
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Faq</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Help</a></li>
+                            </ul>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-12">
+                        <!-- Single Widget -->
+                        <div class="single-footer links">
+                            <h4>Customer Service</h4>
+                            <ul>
+                                <li><a href="#">Payment Methods</a></li>
+                                <li><a href="#">Money-back</a></li>
+                                <li><a href="#">Returns</a></li>
+                                <li><a href="#">Shipping</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <!-- Single Widget -->
+                        <div class="single-footer social">
+                            <h4>Get In Tuch</h4>
+                            <!-- Single Widget -->
+                            <div class="contact">
+                                <ul>
+                                    <li>NO. 342 - London Oxford Street.</li>
+                                    <li>012 United Kingdom.</li>
+                                    <li>info@eshop.com</li>
+                                    <li>+032 3456 7890</li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                            <ul>
+                                <li><a href="#"><i class="ti-facebook"></i></a></li>
+                                <li><a href="#"><i class="ti-twitter"></i></a></li>
+                                <li><a href="#"><i class="ti-flickr"></i></a></li>
+                                <li><a href="#"><i class="ti-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                        <!-- End Single Widget -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer Top -->
+        <div class="copyright">
+            <div class="container">
+                <div class="inner">
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <div class="left">
+                                <p>Copyright © 2023 All Rights Reserved.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="right">
+                                <img src="images/payments.png" alt="#">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /End Footer Area -->
 
-<!-- Jquery -->
-<script src={{url("/ui_assets/js/jquery.min.js")}}></script>
-<script src={{url("/ui_assets/js/jquery-migrate-3.0.0.js")}}></script>
-<script src={{url("/ui_assets/js/jquery-ui.min.js")}}></script>
-<!-- Popper JS -->
-<script src={{url("/ui_assets/js/popper.min.js")}}></script>
-<!-- Bootstrap JS -->
-<script src={{url("/ui_assets/js/bootstrap.min.js")}}></script>
-<!-- Color JS -->
-<script src={{url("/ui_assets/js/colors.js")}}></script>
-<!-- Slicknav JS -->
-<script src={{url("/ui_assets/js/slicknav.min.js")}}></script>
-<!-- Owl Carousel JS -->
-<script src={{url("/ui_assets/js/owl-carousel.js")}}></script>
-<!-- Magnific Popup JS -->
-<script src={{url("/ui_assets/js/magnific-popup.js")}}></script>
-<!-- Fancybox JS -->
-<script src={{url("/ui_assets/js/facnybox.min.js")}}></script>
-<!-- Waypoints JS -->
-<script src={{url("/ui_assets/js/waypoints.min.js")}}></script>
-<!-- Countdown JS -->
-<script src={{url("/ui_assets/js/finalcountdown.min.js")}}></script>
-<!-- Nice Select JS -->
-<script src={{url("/ui_assets/js/nicesellect.js")}}></script>
-<!-- Ytplayer JS -->
-<script src={{url("/ui_assets/js/ytplayer.min.js")}}></script>
-<!-- Flex Slider JS -->
-<script src={{url("/ui_assets/js/flex-slider.js")}}></script>
-<!-- ScrollUp JS -->
-<script src={{url("/ui_assets/js/scrollup.js")}}></script>
-<!-- Onepage Nav JS -->
-<script src={{url("/ui_assets/js/onepage-nav.min.js")}}></script>
-<!-- Easing JS -->
-<script src={{url("/ui_assets/js/easing.js")}}></script>
-<!-- Active JS -->
-<script src={{url("/ui_assets/js/active.js")}}></script>
+
+
+    @yield('my_scripts')
+
+
+    <!-- Jquery -->
+    <script src={{ url('/ui_assets/js/jquery.min.js') }}></script>
+    <script src={{ url('/ui_assets/js/jquery-migrate-3.0.0.js') }}></script>
+    <script src={{ url('/ui_assets/js/jquery-ui.min.js') }}></script>
+    <!-- Popper JS -->
+    <script src={{ url('/ui_assets/js/popper.min.js') }}></script>
+    <!-- Bootstrap JS -->
+    <script src={{ url('/ui_assets/js/bootstrap.min.js') }}></script>
+    <!-- Color JS -->
+    <script src={{ url('/ui_assets/js/colors.js') }}></script>
+    <!-- Slicknav JS -->
+    <script src={{ url('/ui_assets/js/slicknav.min.js') }}></script>
+    <!-- Owl Carousel JS -->
+    <script src={{ url('/ui_assets/js/owl-carousel.js') }}></script>
+    <!-- Magnific Popup JS -->
+    <script src={{ url('/ui_assets/js/magnific-popup.js') }}></script>
+    <!-- Fancybox JS -->
+    <script src={{ url('/ui_assets/js/facnybox.min.js') }}></script>
+    <!-- Waypoints JS -->
+    <script src={{ url('/ui_assets/js/waypoints.min.js') }}></script>
+    <!-- Countdown JS -->
+    <script src={{ url('/ui_assets/js/finalcountdown.min.js') }}></script>
+    <!-- Nice Select JS -->
+    <script src={{ url('/ui_assets/js/nicesellect.js') }}></script>
+    <!-- Ytplayer JS -->
+    <script src={{ url('/ui_assets/js/ytplayer.min.js') }}></script>
+    <!-- Flex Slider JS -->
+    <script src={{ url('/ui_assets/js/flex-slider.js') }}></script>
+    <!-- ScrollUp JS -->
+    <script src={{ url('/ui_assets/js/scrollup.js') }}></script>
+    <!-- Onepage Nav JS -->
+    <script src={{ url('/ui_assets/js/onepage-nav.min.js') }}></script>
+    <!-- Easing JS -->
+    <script src={{ url('/ui_assets/js/easing.js') }}></script>
+    <!-- Active JS -->
+    <script src={{ url('/ui_assets/js/active.js') }}></script>
 </body>
+
 </html>
