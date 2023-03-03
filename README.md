@@ -13,7 +13,9 @@
 <h3 align="center">Landing Page</h3>
 
 ![1](https://user-images.githubusercontent.com/91610919/222736768-5872706d-a02f-4226-ab1b-d8538b2dc056.PNG)
-![2](https://user-images.githubusercontent.com/91610919/222736807-393eb70b-e381-45da-89ac-3feee69d811e.png)
+
+<p align="center"><img src="https://user-images.githubusercontent.com/91610919/222736807-393eb70b-e381-45da-89ac-3feee69d811e.png"/></p>
+
 ![4](https://user-images.githubusercontent.com/91610919/222736822-d7d96d98-76c7-4b02-b289-c1e7f1c4bf14.PNG)
 
 ![5](https://user-images.githubusercontent.com/91610919/222736723-761ebb2f-6e7e-40ae-8c36-0a9c50e251f9.PNG)
