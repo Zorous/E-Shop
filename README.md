@@ -27,17 +27,26 @@
 <p align="center"><img src="https://user-images.githubusercontent.com/91610919/222736762-e47b5f05-ee7c-46fb-9f64-e9c741248421.png"/></p>
     
 ![9](https://user-images.githubusercontent.com/91610919/222736766-8e8b6f6b-c0c9-4643-bf1c-baacbb7ee1c5.PNG)
-![11](https://user-images.githubusercontent.com/91610919/222737822-200c9c2f-9198-44b5-b45a-8e41318d7fb9.PNG)
-![12](https://user-images.githubusercontent.com/91610919/222737833-a979d758-3bc0-49ad-8eaa-18e5c7990317.PNG)
+
 
 ![10](https://user-images.githubusercontent.com/91610919/222737852-db5b116b-c67e-46c7-8895-947372eee33d.PNG)
-
+<h3>After the Authentification the user is a client, he will get redirected to the Shopping Page, and if the user is a Shop Owner he will get redirected to the Management view where he coulf do simple CRUD operations and manage his Shop</h3>
 
 <h1>Phone View </h1>
 <h2>Client :</h2>
 <p align="center"><img src="https://user-images.githubusercontent.com/91610919/222736811-2bd98db9-5ee1-435d-a67d-ebdeee40f987.png"/></p>
+
+
+
 <h2>Shop Owner's View</h2>
 <h3 align="center">Dark mode</h3>
+
+![12](https://user-images.githubusercontent.com/91610919/222737833-a979d758-3bc0-49ad-8eaa-18e5c7990317.PNG)
+
 <p align="center"><img src="https://user-images.githubusercontent.com/91610919/222737843-aed5525b-3c45-4c6a-b210-6b37b10c2150.PNG"/></p>
 <h3 align="center">Light mode</h3>
+
+![11](https://user-images.githubusercontent.com/91610919/222737822-200c9c2f-9198-44b5-b45a-8e41318d7fb9.PNG)
+
+
 <p align="center"><img src="https://user-images.githubusercontent.com/91610919/222737848-3ddef0c2-a629-4f78-a6b9-b76e739fd5ba.PNG"/></p>
